@@ -6,15 +6,14 @@
   </head>
   <body>
     <section class="header-strip">
-      <h1>collaborator.co.uk</h1>
+      <h1><a href="/">collaborator.co.uk</a></h1>
       <nav>
 
         <% if current_user %>
+          <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
           <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
-        <% end %>
 
-        <a class='btn btn-success home-btn' href="/">Home</a>
-        <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
+        <% end %>
       </nav>
     </section>
 

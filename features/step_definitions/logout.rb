@@ -11,3 +11,8 @@ And(/^I cannot see the Logout button$/) do
   visit '/'
   page.should_not have_content 'Logout'
 end
+
+And(/^I cannot see the Groups button$/) do
+  visit '/'
+  page.should_not have_content 'Groups'
+end
