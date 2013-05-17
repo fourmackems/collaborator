@@ -14,7 +14,7 @@ Feature: List all groups
   ===============
   - Do we show groups graphically or with text?
   - Do we show any information about the group other than title?
-  
+
   Scenario: Showing all the groups any given user belongs to
     Given a user is logged in
     When the following groups are available:
@@ -28,7 +28,6 @@ Feature: List all groups
     | Hiking |
     | Monkey |
     | Tiger |
-    When I follow "Hiking" 
+    When I follow "Hiking"
     Then I should see "You are in the group named: Hiking"
 
-    
