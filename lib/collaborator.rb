@@ -111,6 +111,12 @@ end
     redirect '/groups/' + group_url
   end
 
+  # +=+=+=+ for MY GROUPS module +=+=+=+ #
+
+  post '/my_groups' do
+    current_user.groups << Group.find(params[:group_id])
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
   # really not sure what this is for (Matt)

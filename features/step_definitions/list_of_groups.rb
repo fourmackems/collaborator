@@ -15,7 +15,11 @@ end
 
 #	<% groups.each do |groups| %>
 #	  <li><%= groups.group_name %></li>
-When(/^I select "Hiking" from  within "groups":$/) do 
+When(/^I select "Hiking" from  within "groups":$/) do
   redirect '/groups/hiking'
 end
 
+
+When(/^the my groups page$/) do
+  page.should have_content 'My groups'
+end

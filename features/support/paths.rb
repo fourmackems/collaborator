@@ -19,6 +19,9 @@ module NavigationHelpers
     when /list of groups page/
       '/groups'
 
+    when /the my groups page/
+      '/my_groups'
+
     when /the timeline page/
       '/groups/testgroup'
 

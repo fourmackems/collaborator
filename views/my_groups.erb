@@ -5,10 +5,6 @@
       <% groups.each do |group| %>
         <li>
           <a href="/groups/<%= group.url %>"><%= group.group_name %></a>
-          <form method="POST" action="/my_groups">
-            <input type="text" name='group_id' value='<%=group._id%>' />
-            <button class="like-button">Like</button>
-          </form>
         </li>
       <% end %>
     </ul>
