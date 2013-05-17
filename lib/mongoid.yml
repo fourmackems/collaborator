@@ -1,9 +1,9 @@
 development:
    database: collaborator
    host: localhost
+
 production:
   uri: <%= ENV['MONGOHQ_URL'] %>
-
 
 test:
   database: collaborator_test

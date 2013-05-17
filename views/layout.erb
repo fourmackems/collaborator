@@ -8,7 +8,11 @@
     <section class="header-strip">
       <h1>collaborator.co.uk</h1>
       <nav>
-        <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
+
+        <% if current_user %>
+          <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
+        <% end %>
+
         <a class='btn btn-success home-btn' href="/">Home</a>
         <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
       </nav>

@@ -19,6 +19,7 @@ Feature: log a user out of the application when logout button is selected
     And I follow "Logout"
     Then I should see the goodbye page
     And I cannot access the list of groups
+    And I cannot see the Logout button
 
 
   #Scenario: Logout button does not exist on the homepage or goodbye page

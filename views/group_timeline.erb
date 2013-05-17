@@ -16,16 +16,17 @@
   <h4>Your Posts</h4>
 <ul>
   <% posts.each do |post| %>
-    <li><h4><%= post.content %></h4>
-    <p><%= post.created_at %></p>
-    <p>
+    <li>
+      <h4><%= post.content %></h4>
+      <p><%= post.created_at %></p>
+      <p>
       <form method='POST' action='/groups/<%= group.url%>/delete_post'>
         <input type='hidden' name='post_id' value='<%=post._id%>'>
         <button class="btn">Delete</button>
       </form>
-    </p>
-    <p>___________________________________________________________________</p></li>
-  <% end %>
+      </p>
+    </li>
+    <% end %>
 </ul>
 </section>
   </div>
