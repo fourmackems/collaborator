@@ -10,7 +10,6 @@ describe 'create_group' do
   end
 
   it 'creates a new group' do
-
   	user = double User
   	User.should_receive(:find).and_return(user)
 

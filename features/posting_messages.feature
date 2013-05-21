@@ -18,6 +18,7 @@ Feature: Post a new message
   - Does a message need to be part of a group?
   - What about multimedia? (photos, videos, etc)
 
+  @javascript
   Scenario: Posting a new message
     Given a user is logged in
     When the following posts created at the following times exist in the "master_group":
@@ -26,7 +27,7 @@ Feature: Post a new message
       | What's up?   |
     When I am on the master_group timeline page
     And I fill in "message" with "Hey Collaborators!"
-    And I press "Post"
+    And I submit by pressing "post-button"
     Then I should see "Hey Collaborators!"
     
   Scenario: Posting a new message when group name is more than one word

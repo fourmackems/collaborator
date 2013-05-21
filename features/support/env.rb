@@ -6,9 +6,12 @@ require File.join(File.dirname(__FILE__), '..', '..', 'lib/collaborator.rb')
 
 require 'capybara'
 require 'capybara/cucumber'
+require 'capybara-webkit'
 require 'rspec'
+require 'rack/test'
 
 Capybara.app = Collaborator
+Capybara.javascript_driver = :webkit
 
 class CollaboratorWorld
   include Capybara::DSL

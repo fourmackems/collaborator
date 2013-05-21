@@ -1,0 +1,14 @@
+<section class="row">
+  <div class="span6 offset3 group-list">
+    <h2>The group: '<%= group.group_name %>' contains posts, please confirm if you would like to delete the group.</h2>
+
+			<form method='POST' action='/groups/<%= group.url%>/delete_confirmed'>
+				<input type='hidden' name='group_id' value='<%=group._id%>'>
+			   <button class="btn btn-danger btn-large btn-block" >Confirm Deletion</button>
+			</form>
+
+			<form method='GET' action='/groups'>
+			   <button class="btn btn-success btn-large btn-block">Return to Your List of Group</button>
+			</form>
+ </div>
+</section>

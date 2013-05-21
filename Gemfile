@@ -10,7 +10,8 @@ gem "bson_ext", "~> 1.5"
 gem "rack-test"
 
 group :development, :test do
-  gem 'capybara'
+  gem 'capybara', '1.1.2'
+  gem 'capybara-webkit', '0.12.1'
   gem 'cucumber'
   gem 'cucumber-sinatra'
   gem 'database_cleaner'

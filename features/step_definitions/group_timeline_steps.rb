@@ -15,3 +15,6 @@ end
 Then(/^"(.*?)" should be the first post in the list$/) do |post_content|
   find(:xpath, '//ul/li[1]/h4').text.should eq post_content
 end
+When(/^I submit by pressing "(.*?)"$/) do |button|
+  find("##{button}").click
+end
