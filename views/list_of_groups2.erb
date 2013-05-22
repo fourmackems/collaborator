@@ -1,0 +1,47 @@
+<h2>Your groups</h2>
+
+  <a class="btn btn-primary" href="/group/create">Add another group</a>
+
+  <ul>
+    <% groups.each do |group| %>
+        <form method='POST' action='/groups/<%= group.url%>/delete_group'>
+          <li>
+            <h3>
+            <a href="/groups/<%= group.url %>"><%= group.group_name %></a>
+               <a href="#myModal" role="button" data-toggle="modal" data-group-id='<%= group._id%>' data-group-name='<%= group.group_name%>' style="float: right" class="btn btn-danger" id='groupId'>Delete</a>
+            </h3>
+          </li>
+        </form>
+    <% end %>
+  </ul>
+
+<!-- my modal delete box id='delete-group-button'-->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>Please confirm if you want to delete this group - all posts in this group will be deleted</p>
+  </div>
+  <div class="modal-footer">
+    <form id="myDeleteForm" method='POST' action='test'>
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <form>
+      <button class="btn btn-danger" >Delete Group</button>
+    </form>
+  </div>
+</div>
+<!-- my modal delete box  -->
+
+  <script>
+  $('#delete-group-button').bind('click', function(){
+    confirm('Are you sure you want to delete the group - the group contains posts')
+  })
+  $(document).on('click', '#groupId', function() {
+    var groupId = $(this).data('group-id');
+    var groupName = $(this).data('group-name');
+    $('#myModalLabel').html("You are about to delete the group: " + groupName);
+    $('#myDeleteForm').attr("action",'groups/' + groupName + '/delete_confirmed');
+    });
+  </script>

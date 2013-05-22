@@ -1,19 +1,22 @@
 <section class="row forms">
-  <div class='span4 offset2 create-account'>
-    <h2>Create an account</h2>
+  <article class='span4 offset2 create-account'>
+    <header>
+      <h2>Create an account</h2>
+    </header>
     <form method='POST' action='/sign_up' id='sign-in-form'>
       <input name='username' type='text' placeholder='choose a username' />
       <input name='password' type='password' placeholder='choose a password' />
       <button class="btn btn-primary">Sign up</button>
     </form>
-  </div>
-
-  <div class='span4 login-account'>
-    <h2>Please Login</h2>
+  </article>
+  <article class='span4 login-account'>
+    <header>
+      <h2>Please Login</h2>
+    </header>
     <form method='POST' action='/login' id="login-form">
       <input type='text' name= 'username' placeholder= 'username' />
       <input type='password' name= 'password' placeholder= 'password' id="login-password"/>
       <button class="btn">Login</button>
     </form>
-  </div>
+  </article>
 </section>

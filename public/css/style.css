@@ -166,11 +166,19 @@ p {
 
 ul {
 	list-style: none;
-	background-color: #fff;
 	padding: 20px 10px;
 }
 
 ul li {
 	margin-bottom: 15px
+}
+
+
+#create-group-form {
+	display: none;
+}
+
+header {
+	margin-bottom: 10px;
 }
 
