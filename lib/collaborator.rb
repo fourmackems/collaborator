@@ -128,7 +128,7 @@ end
   end
 
   post '/groups/:group_url/delete_group' do  |group_url|
-    group = Group.find(params['group_id'])
+    group = Group.where(:group_name => group_url)
 
     if group.posts.empty?
       group.delete
