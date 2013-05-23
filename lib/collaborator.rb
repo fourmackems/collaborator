@@ -49,20 +49,21 @@ end
   # +=+=+=+ for LOGIN module +=+=+=+ #
 
   get '/' do
-    puts params.inspect
-    erb :login_form # check if the KV pair exists in mongoDB and if so, allow entry
+    erb :index , layout: false
   end
 
   post '/login' do
+    content_type :json
+    
     user = User.first({:conditions=>{:username=>params['username']}})
 
     if user.nil?
-      redirect '/'
+      {logged_in: false}.to_json
     elsif user.password == params['password']
       session[:user] = user._id
-      redirect '/groups'
+      {logged_in: true}.to_json
     else
-      redirect '/'
+      {logged_in: false}.to_json
     end
   end
 
@@ -104,7 +105,8 @@ end
   end
 
   get '/groups' do
-    erb(:list_of_groups, locals: { :groups => Group.all })
+    content_type :json
+    Group.all.to_json
   end
 
   # +=+=+=+ DELETE GROUP MODULE +=+=+=+ #

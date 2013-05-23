@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href='/css/bootstrap.css'>
+    <link rel="stylesheet" type="text/css" href='/css/flat-ui.css'>
+  	<link rel="stylesheet" type="text/css" href='/css/style.css'>
+    <script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/underscore.js"></script>
+    <script type="text/javascript" src="/js/backbone.js"></script>
+    <script type="text/javascript" src="/js/handlebars.js"></script>
+  </head>
+  <body>
+    <header class="header-strip">
+
+      <h1>
+        <a href="/">collaborator.co.uk</a>
+      </h1>
+      <nav>
+        <% if current_user %>
+          <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
+          <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
+        <% end %>
+      </nav>
+    </header>
+
+  	<section class="main"></section>
+
+<script type="text/template" id="groups_template">
+
+<section>
+  <article class="span10 offset1 group-list">
+    <header>
+<!-- create group START -->
+      <aside id="create-group-form">
+        <form method="POST" action="/groups">
+          <input type="text" name="add_group" placeholder="choose a group name" />
+          <!-- span id="create-button" class="btn btn-primary">Create</span -->
+        </form>
+      </aside>
+      <span id="create-group-button" class="btn btn-primary">Create a group</span>
+<!-- create group END -->
+    </header>
+      <h2>Your groups</h2>
+       <ul id="group-list"></ul>
+  </article>
+</section>
+<!-- my modal delete box id='delete-group-button'-->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+
+  <div class="modal-body">
+    <p>Please confirm if you want to delete this group - all posts in this group will be deleted</p>
+  </div>
+
+  <div class="modal-footer">
+
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <form id="myDeleteForm" method='POST' action='test'>
+    <button class="btn btn-danger">Delete Group</button>
+    </form>
+  </div>
+</div>
+
+</script>
+
+<script type="text/x-handlebars-template" id="group_template">
+  <li>
+    <a href="#groups/{{cid}}">{{group_name}}</a>
+    <span id="like_{{_id}}" class="btn btn-success like">LIKE</span>
+    <input type='hidden' name='group_id' value='{{_id}}'>
+    <a href="#myModal" role="button" data-toggle="modal" data-group-id='{{_id}}' data-group-name='{{group_name}}' class="btn btn-danger" id='groupId'>Delete</a>
+  </li>
+</script>
+
+
+<script type="text/template" id="login_template">
+        <div>
+        <article class='span4 login-account'>
+         <header>
+          <h2>Please Login</h2>
+         </header>
+         <p id="login-form">
+          <input id="username" type='text' name= 'username' placeholder= 'username' />
+          <input id="password" type='password' name= 'password' placeholder= 'password'/>
+          <span class="btn" id="login">Login</span>
+         </p>
+        </article>
+        </div>
+      </script>
+
+<script type="text/template" id="signup_template">
+      <article class='span4 offset2 create-account'>
+    <header>
+      <h2>Create an account</h2>
+    </header>
+    <form method='POST' action='/sign_up' id='sign-in-form'>
+      <input name='username' type='text' placeholder='choose a username' />
+      <input name='password' type='password' placeholder='choose a password' />
+      <button class="btn btn-primary">Sign up</button>
+    </form>
+  </article>
+  </script>
+<script type="text/javascript" src="/js/collaborator.js"></script>
+<script type="text/javascript">
+  var collaborator = new Collaborator;
+  Backbone.history.start(); 
+</script> 
+ </body>
+</html>
