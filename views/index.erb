@@ -24,7 +24,34 @@
     </header>
 
   	<section class="main"></section>
+    <script type="text/x-handlebars-template" id='group_page_template'>
+      <h2> You are in the group named: <span class="capital">{{group_name}}</span></h2>
+      <section class="row">
+        <div class="span6 offset3">
+          <input id='post-message' type='text' name='message' placeholder='go on, post something here' />
+          <span id="post-button" class="btn btn-primary">Post</span>
+        </div>
+      </section>
 
+
+      <section class="row">
+        <div class="span6 offset3 posts">
+          <section class="your-posts">
+        <h4>Your Posts</h4>
+      <ul id='post-list'>
+        </ul>
+      </section>
+        </div>
+      </section>
+    </script>
+
+    <script type='text/x-handlebars-template' id='post_template'>
+      <li>
+        <h4>{{content}}</h4>
+        <p>{{created_at}}</p>
+        <p><button class='delete-button btn'>Delete</button></p>
+       </li>
+    </script>
 <script type="text/template" id="groups_template">
 
 <section>

@@ -89,8 +89,9 @@ end
 #
 
   get '/groups/:group_url' do |group_url|
+    content_type :json 
     group = Group.first(conditions: { :url => group_url})
-    erb :group_timeline, locals: { :posts =>  group.posts.order_by([:created_at, :desc]), :group => group }
+    group.posts.order_by([:created_at, :desc]).to_json
   end
 
   post '/groups/:group_url' do |group_url|

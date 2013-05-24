@@ -1,5 +1,23 @@
 
+Post = Backbone.Model.extend({});
+
+Posts = Backbone.Collection.extend({
+	model: Post,
+	url: function() {
+		return "/groups/" + this.groupUrl;
+	},
+
+	groupUrl: function(url) {
+		this.groupUrl = url;
+	}
+});
+
 Group = Backbone.Model.extend({
+	preparePosts: function() {
+		var posts = new Posts;
+		posts.groupUrl = this.get('url');
+		this.set('posts', posts);
+	}
 });
 
 Groups = Backbone.Collection.extend({
@@ -47,13 +65,49 @@ GroupsView = Backbone.View.extend({
 	},
 
 	renderGroup: function(group) {
-		console.log(group.cid);
 		var source = $("#group_template").html();
 		var template = Handlebars.compile(source);
 		var context = group.toJSON();
 		context['cid'] = group.cid;
 		$("#group-list").append(template(context));
 	}
+});
+
+PostView = Backbone.View.extend({
+  render: function() {
+  	var source = $("#post_template").html();
+	var template = Handlebars.compile(source);
+	var context = this.model.toJSON();
+	$("#post-list").append(template(context));
+  }
+});
+
+GroupTimelineView = Backbone.View.extend({
+
+  events: {
+  	"click #post-button": 'notReady',
+  	"click .delete-button": 'notReady'
+  },
+  render: function() {
+  	var posts = this.model.get('posts');
+
+  	var source = $("#group_page_template").html();
+	var template = Handlebars.compile(source);
+	this.$el.html(template(this.model.toJSON()));
+	
+	this.listenTo(posts, 'sync', this.renderPosts);
+	posts.fetch();
+  },
+  renderPosts: function() {
+  	this.model.get('posts').forEach(this.renderPost);
+  },
+  renderPost: function(post) {
+  	var postView = new PostView({el: '#post-list', model: post});
+  	postView.render();
+  },
+  notReady: function() {
+  	alert('not ready yet');
+  }
 });
 
 IndexView = Backbone.View.extend({
@@ -87,5 +141,8 @@ Collaborator = Backbone.Router.extend({
 
   group: function(id) {
   	var group = this.groups.get(id);
+  	group.preparePosts();
+  	var groupTimelineView = new GroupTimelineView({el: '.main', model: group});
+  	groupTimelineView.render();
   }
 });
