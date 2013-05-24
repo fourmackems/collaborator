@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href='/css/bootstrap.css'>
+    <link rel="stylesheet" type="text/css" href='/css/flat-ui.css'>
+    <link rel="stylesheet" type="text/css" href='/css/style.css'>
+    <script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/underscore.js"></script>
+    <script type="text/javascript" src="/js/backbone.js"></script>
+
+  </head>
+  <body>
+    <header class="header-strip">
+
+      <h1>
+        <a href="/">collaborator.co.uk</a>
+      </h1>
+      <nav>
+        <% if current_user %>
+          <a class='btn btn-warning groups-btn' href="/groups">Groups</a>
+          <a class='btn btn-danger logout-btn' href="/logout">Logout</a>
+        <% end %>
+      </nav>
+    </header>
+
+    <section class="main">
+
+    </section>
+
+
+    <script type="text/template" id="login_template">
+    <article class='span4 login-account'>
+    <header>
+     <h2>Please Login</h2>
+      </header>
+          <input type='text' name= 'username' placeholder= 'username' id='username' />
+          <input type='password' name= 'password' placeholder= 'password' id='password' />
+          <span class="btn" id='login'>Login</span>
+      </article>
+    </script>
+
+    <script type='text/javascript' src='/js/collaborator.js'></script>
+    <script type='text/javascript'>
+      var collaborator = new Collaborator;
+      Backbone.history.start();
+    </script>
+
+ </body>
+</html>
